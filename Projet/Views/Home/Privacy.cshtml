@@ -3,4 +3,62 @@
 }
 <h1>@ViewData["Title"]</h1>
 
-<p>Use this page to detail your site's privacy policy.</p>
+@{
+	Layout = "_Layout";
+}
+@section Stylesheets {
+	<link rel="stylesheet" href="~/css/Book.css" asp-append-version="true" />
+}
+
+<style></style>
+
+<div id="opt">
+	<dl>
+		<dt>Console</dt>
+		<dd id="view-cover" class="cur">View Cover</dd>
+		<dd id="view-back">View Back</dd>
+		<dd id="open-book">Open/Close book</dd>
+		<dd id="view-rotate">360° Showcase</dd>
+	</dl>
+</div>
+
+<h1 class="demo-title">CSS3 3D图书展示 (3D Book Showcase)</h1>
+
+<div id="book" class="view-cover">
+	<div class="main">
+		<div class="book-font">
+			<div class="book-cover">
+				<h1 class="title">Wuthering Heights</h1>
+				<h2 class="author">Emily Bronte</h2>
+				<div class="publisher">Oxford University Press, USA</div>
+			</div>
+			<div class="book-cover-back"></div>
+		</div>
+		<div class="book-page">
+			<div id="page-1" class="page">
+				<h3>1 Mr Lockwood visits Wuthering Heights</h3>
+				<p>1801 I have just returned from a visit to my landlord—the solitary neighbour that I shall be troubled with. This is certainly a beautiful country! In all England, I do not believe that I could have fixed on a situation so completely removed from the stir of society. A perfect misanthropist’s heaven; and Mr. Heathcliff and I are such a suitable pair to divide the desolation between us. A capital fellow! He little imagined how my heart warmed towards him when I beheld his black eyes withdraw so suspiciously under their brows, as I rode up, and when his fingers sheltered themselves, with a jealous resolution, still further in his waistcoat, as I announced my name.</p>
+				<p>“Mr. Heathcliff!” I said.</p>
+				<p>A nod was the answer.</p>
+				<p>“Mr. Lockwood, your new tenant, sir. I do myself the honour of calling as soon as possible after my arrival, to express the hope that I have not inconvenienced you by my perseverance in soliciting the occupation of Thrushcross Grange”</p>
+			</div>
+			<div class="page-number">- 1 -</div>
+		</div>
+		<div class="book-back">
+			<div class="description">
+				<p>"Ideal for the college survey course: judicious introduction plus just the right admixture of explanatory notes (vital for American students' comprehension of dialect words), up-to-date bibliography, and several other brief, indispensable supports to well-informed reading."</p>
+				<p class="txt-right">--Katherine Linehan, Oberlin College</p>
+			</div>
+			<div class="isbn"><img src="http://www.bluesdream.com/case/css3/3d-book-showcase/images/isbn.png"></div>
+		</div>
+		<div class="book-bone">
+			<h2>Emily Bronte　Wuthering Heights</h2>
+		</div>
+		<div class="book-top"></div>
+		<div class="book-right"></div>
+		<div class="book-bottom"></div>
+	</div>
+</div>
+@section scripts {
+	<script src="~/js/book.js"></script>
+}

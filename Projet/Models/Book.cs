@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Projet.Models
 {
@@ -6,10 +7,13 @@ namespace Projet.Models
     
     public class Book
     {
+        [Key]
         public int Id_Book { get; set; }
         public string Title { get; set; }
-        public int Pages_Nbs { get; set; }  
+        public string Url{ get; set; }  
         public string ISBN { get; set; }
+        public string Description { get; set; }
+
         public string AuthorName { get; set; }
         public int Copies_Nbs { get; set; }
         public int Available_Nbs { get; set; }

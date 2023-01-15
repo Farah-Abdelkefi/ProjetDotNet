@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Projet.Models;
 using System;
 using System.Linq;
+using System.Diagnostics;
 
 namespace Projet.Data
 {
@@ -42,6 +43,7 @@ namespace Projet.Data
             
         catch (Exception ex)
          {
+                Debug.WriteLine("Exception ",ex.ToString());
                 throw ex;
          }
 }

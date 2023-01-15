@@ -1,0 +1,84 @@
+﻿@using Projet.Models;
+@model Client
+
+@{
+    ViewData["Title"] = "Sign Up";
+}
+@{
+    Layout = "_Layout2";
+} 
+@if (ViewBag.Exist){
+    <div class="alert-danger">
+        You already have an account !
+    </div>
+}
+@if (ViewBag.message)
+{
+    <div class="alert-danger">
+        Please verify the email or password !
+    </div>
+}
+
+<div class="login-box">
+    
+    <h2><center>Create account </center>  </h2>
+
+
+    <form asp-action="SignUp">
+
+        <div class="user-box" >
+           
+           
+            <input type="text" name="id" required="true" asp-for="Inscription_Id">
+            <label asp-for="Inscription_Id"> ID </label>
+            <span asp-validation-for="Inscription_Id" class="text-danger"></span>
+        </div>
+        <div class="user-box" style="display: inline-block;">
+            <input type="text" name="firstname" required="true" asp-for="FirstName" >
+            <label asp-for="FirstName" >First Name </label>
+            <span asp-validation-for="FirstName" class="text-danger" ></span>
+         </div>
+        <div class="user-box" style="display: inline-block;">
+           
+            <input type="text" name="lastname" required="true" asp-for="LastName" style="display: inline-block;">
+            <label asp-for="Email">Last Name </label>
+            <span asp-validation-for="LastName" class="text-danger" ></span>
+        </div>
+
+        <div class="user-box" style="display: inline-block;">
+           
+            <input type="email" name="email" required="" asp-for="Email">
+            <label asp-for="Email">Email Address</label>
+            <span asp-validation-for="Email" class="text-danger"></span>
+
+
+        </div>
+
+
+        <div class="user-box" style="display: inline-block;">
+           
+            <input type="text" name="phonenumber" required="true" asp-for="PhoneNumber">
+            <label asp-for="PhoneNumber">Phone Number </label>
+            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+        </div>
+        <div class="user-box">
+           
+            <input type="password" name="password" required="true" asp-for="Password">
+            <label asp-for="Password">Password</label>
+            <span asp-validation-for="Password" class="text-danger"></span>
+        </div> 
+        <center>
+        <a class="form-group">
+           
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+                <button type="submit">Submit</button>
+                
+        </a>
+        </center>
+    </form>
+    <p class="login-callout mt-3"> <center>Already have an account? <a href="/Home/LogIn">Log In </a> </center></p>
+    <br />
+</div>

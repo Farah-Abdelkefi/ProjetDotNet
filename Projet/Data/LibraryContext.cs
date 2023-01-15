@@ -4,16 +4,23 @@ using Projet.Models;
 
 namespace Projet.Data
 {
+   
     public class LibraryContext : DbContext
     {
         private static  LibraryContext _context = null;
         public DbSet<Book> Book { get; set; }
         public DbSet<Client>Client { get; set; }
-        
-        
-       
-   
-        private LibraryContext(DbContextOptions o) : base(o)
+
+        public DbSet<Admin> Admin { get; set; }
+       public DbSet <Emprunt> Emprunt { get; set; }
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            builder.Entity<Emprunt>().HasKey(table => new {
+                table.inscription_id,
+                table.id_book
+            });
+        }
+        private LibraryContext (DbContextOptions o) : base(o)
         { 
         
         }
@@ -27,7 +34,7 @@ namespace Projet.Data
                 {
                     
                     var optionsBuilder = new DbContextOptionsBuilder<LibraryContext>();
-                    optionsBuilder.UseSqlite(@"Data Source=C:\Users\ThinkPad\Documents\web\c sharp\TP4\2022 GL3 .NET Framework TP4 - SQLite database.db");
+                    optionsBuilder.UseSqlite(@"Data Source=C:\Users\ThinkPad\Documents\Projet\sqlite.db");
                     _context = new LibraryContext(optionsBuilder.Options);
                 }
 
@@ -39,6 +46,7 @@ namespace Projet.Data
             }
             return _context;
         }
+        
 
     }
 }

@@ -1,0 +1,400 @@
+﻿@model List<Emprunt>;
+@using Projet.Data;
+@{
+    Layout = "_Layout2";
+}
+<style>
+    .one-edge-shadow, .reports .reports-dashboard .data-dashboard .dashboard-list-item-active .dashboard-metric {
+        -webkit-box-shadow: 0 8px 0 0 #0ea8ad;
+        -moz-box-shadow: 0 8px 0 0 #0ea8ad;
+        box-shadow: 0 8px 0 0 #0ea8ad;
+    }
+
+    html, body {
+        font-size: 10px;
+        background: white ;
+    }
+
+    .reports {
+        font-size: 1.8rem;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: no-wrap;
+        justify-content: flex-start;
+        align-items: stretch;
+        align-content: stretch;
+        height: 100vh;
+    }
+
+        .reports .reports-header {
+            display: flex;
+            flex-direction: column;
+            flex-wrap: nowrap;
+            justify-content: flex-start;
+            align-items: stretch;
+            align-content: stretch;
+            background-color: #253f74;
+            color: #fff;
+            border-radius: 2.5rem 0 0 0;
+            padding: 0.8rem 0 0.8rem 4rem;
+        }
+
+        .reports .reports-dashboard .data-dashboard {
+            font-weight: 1.8rem;
+            margin: 0.5rem 0;
+            color: #fff;
+        }
+
+            .reports .reports-dashboard .data-dashboard a {
+                color: #fff;
+                text-decoration: none;
+                cursor: default;
+            }
+
+                .reports .reports-dashboard .data-dashboard a:hover, .reports .reports-dashboard .data-dashboard a:focus, .reports .reports-dashboard .data-dashboard a:active {
+                    color: #fff;
+                }
+
+            .reports .reports-dashboard .data-dashboard .dashboard-list, .reports .reports-dashboard .data-dashboard .dashboard-list-item {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+            }
+
+            .reports .reports-dashboard .data-dashboard .dashboard-list {
+                display: flex;
+                flex-direction: row;
+                flex-wrap: nowrap;
+                justify-content: space-between;
+                align-items: stretch;
+                align-content: flex-start;
+                background-color: #4062a7;
+            }
+
+            .reports .reports-dashboard .data-dashboard .dashboard-list-item {
+                display: flex;
+                justify-content: center;
+                align-items: stretch;
+                align-content: stretch;
+                text-align: center;
+                border-right: 0.5rem solid #fff;
+                flex: 1 1 100%;
+            }
+
+                .reports .reports-dashboard .data-dashboard .dashboard-list-item:last-child {
+                    border-right: none;
+                }
+
+            .reports .reports-dashboard .data-dashboard .dashboard-metric {
+                flex: 1 1 100%;
+                display: flex;
+                flex-direction: column;
+                flex-wrap: nowrap;
+                justify-content: center;
+                align-items: stretch;
+                align-content: flex-start;
+            }
+
+                .reports .reports-dashboard .data-dashboard .dashboard-metric span {
+                    display: block;
+                    text-align: center;
+                    white-space: nowrap;
+                }
+
+                .reports .reports-dashboard .data-dashboard .dashboard-metric .title {
+                    font-size: 1.7rem;
+                    padding: 0.5rem 0;
+                    background-color: #5a7cc0;
+                }
+
+                .reports .reports-dashboard .data-dashboard .dashboard-metric .metric {
+                    font-size: 3rem;
+                    font-weight: 600;
+                }
+
+                .reports .reports-dashboard .data-dashboard .dashboard-metric .label {
+                    font-size: 1rem;
+                    padding: 0.4rem 0 0.8rem 0;
+                }
+
+            .reports .reports-dashboard .data-dashboard .dashboard-list-item-active {
+                background-color: #0ea8ad;
+            }
+
+                .reports .reports-dashboard .data-dashboard .dashboard-list-item-active .dashboard-metric .title {
+                    background-color: #10bfc5;
+                }
+
+        .reports .reports-content {
+            display: flex;
+            flex-direction: column;
+            flex-wrap: nowrap;
+            justify-content: flex-start;
+            align-content: stretch;
+            align-items: stretch;
+            min-height: 60vh;
+            border: 0.6rem solid #0ea8ad;
+            background-color: #e0dbd1;
+        }
+
+            .reports .reports-content .data-grid {
+                display: flex;
+                flex-direction: column;
+                flex-wrap: nowrap;
+                justify-content: flex-start;
+                align-content: stretch;
+                align-items: stretch;
+                font-size: 1.5rem;
+                font-weight: bold;
+                color: #253f74;
+                margin: 1rem 0 0 0;
+            }
+
+                .reports .reports-content .data-grid a {
+                    color: #253f74;
+                    text-decoration: none;
+                    cursor: pointer;
+                }
+
+                    .reports .reports-content .data-grid a:hover, .reports .reports-content .data-grid a:focus, .reports .reports-content .data-grid a:active {
+                        color: #253f74;
+                    }
+
+                .reports .reports-content .data-grid .grid-row {
+                    display: flex;
+                    flex-direction: row;
+                    flex-wrap: nowrap;
+                    justify-content: center;
+                    align-content: stretch;
+                    align-items: stretch;
+                    margin: 0 1rem 1rem 1rem;
+                    padding: 0.5rem 0;
+                    background-color: #efede8;
+                }
+
+                    .reports .reports-content .data-grid .grid-row .grid-cell {
+                        flex: 1 1 10%;
+                        display: flex;
+                        flex-direction: row;
+                        flex-wrap: nowrap;
+                        justify-content: center;
+                        align-content: center;
+                        align-items: center;
+                        border-right: 1px solid white;
+                    }
+
+                        .reports .reports-content .data-grid .grid-row .grid-cell .datum {
+                            font-weight: 500;
+                        }
+
+                        .reports .reports-content .data-grid .grid-row .grid-cell:first-child {
+                            display: flex;
+                            flex-direction: row;
+                            flex-wrap: nowrap;
+                            justify-content: space-between;
+                            align-content: center;
+                            align-items: center;
+                        }
+
+                            .reports .reports-content .data-grid .grid-row .grid-cell:first-child .datum {
+                                font-weight: 600;
+                            }
+
+                    .reports .reports-content .data-grid .grid-row.grid-header-row .grid-cell {
+                        flex: 1 1 15%;
+                        display: flex;
+                        flex-direction: row;
+                        flex-wrap: nowrap;
+                        justify-content: center;
+                        align-content: stretch;
+                        align-items: flex-end;
+                        text-transform: uppercase;
+                    }
+
+                        .reports .reports-content .data-grid .grid-row.grid-header-row .grid-cell .cell-label {
+                            display: flex;
+                            flex-direction: column;
+                            flex-wrap: nowrap;
+                            justify-content: center;
+                            align-content: stretch;
+                            align-items: stretch;
+                            outline: none;
+                        }
+
+                            .reports .reports-content .data-grid .grid-row.grid-header-row .grid-cell .cell-label span {
+                                display: block;
+                                text-align: center;
+                                letter-spacing: 0.6px;
+                                font-weight: 700;
+                                font-size: 1.4rem;
+                            }
+</style>
+<div id="siteWrapper" class="site-wrapper">
+    <!--Navbar-->
+
+
+
+
+
+    <div class="container-fluid">
+
+        <!--Reports Container-->
+        <div class="reports">
+            <!--Header-->
+            <div class="reports-header">
+                Viewing
+            </div>
+
+            <div class="reports-dashboard">
+                <div class="data-dashboard">
+                    <ul class="dashboard-list" role="tablist">
+                        <li class="dashboard-list-item dashboard-list-item-active" role="tab" aria-selected="true">
+                            <a class="dashboard-metric" href="#">
+                                <span>Class</span>
+                                <span>Overview</span>
+                            </a>
+                        </li>
+
+                        <li class="dashboard-list-item" role="tab" aria-selected="false">
+                            <a class="dashboard-metric" href="#">
+                                <span class="title">Total Books</span>
+                                <span class="metric">20</span>
+
+                            </a>
+                        </li>
+                        <li class="dashboard-list-item" role="tab" aria-selected="false">
+                            <a class="dashboard-metric" href="#">
+                                <span class="title">total copies of books </span>
+                                <span class="metric">200</span>
+
+                            </a>
+                        </li>
+                        <li class="dashboard-list-item" role="tab" aria-selected="false">
+                            <a class="dashboard-metric" href="#">
+                                <span class="title">average copies per book</span>
+                                <span class="metric">3</span>
+
+                            </a>
+                        </li>
+                        <li class="dashboard-list-item" role="tab" aria-selected="false">
+                            <a class="dashboard-metric" href="#">
+                                <span class="title">current borrowed books</span>
+                                <span class="metric">40%</span>
+
+                            </a>
+                        </li>
+                        <li class="dashboard-list-item" role="tab" aria-selected="false">
+                            <a class="dashboard-metric" href="#">
+                                <span class="title">Subscribers</span>
+                                <span class="metric">6</span>
+
+                            </a>
+                        </li>
+                        <li class="dashboard-list-item" role="tab" aria-selected="false">
+                            <a class="dashboard-metric" href="#">
+                                <span class="title">books per subscriber</span>
+                                <span class="metric">3</span>
+
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="reports-content" tabindex="0" role="tabpanel">
+
+                <!--Data Grid-->
+                <div class="data-grid" role="grid">
+                    <!--Header-->
+                    <div class="grid-row grid-header-row" role="row">
+                        <!--book id-->
+                        <div role="gridcell" class="grid-cell">
+                            <a href="#" tabindex="-1" class="cell-label">
+                                <span>BOOK ID</span>
+                            </a>
+
+                        </div>
+
+                        <!--client id-->
+                        <div role="gridcell" class="grid-cell">
+                            <a href="#" tabindex="-1" class="cell-label">
+                                <span>CLIENT </span>
+                                <span>ID</span>
+                            </a>
+
+                        </div>
+
+
+
+                        <!--Last Session-->
+                        <div role="gridcell" class="grid-cell">
+                            <a href="#" tabindex="-1" class="cell-label">
+                                <span>DEADLINE</span>
+                                <span></span>
+                            </a>
+
+                        </div>
+
+                        <!--Grade-->
+                        <div role="gridcell" class="grid-cell">
+                            <a href="#" tabindex="-1" class="cell-label">
+                                <span>Available copies</span>
+                            </a>
+
+                        </div>
+
+                        <!--Level-->
+                        <div role="gridcell" class="grid-cell">
+                            <a href="#" tabindex="-1" class="cell-label">
+                                <span>Total copies</span>
+                            </a>
+
+                        </div>
+                    </div>
+                    <!--Header Row-->
+                    <!--Row-->
+                    @{
+                        BookRepository books = ViewBag.books;
+                        foreach (Emprunt c in Model)
+                        {
+                            <div class="grid-row" role="row">
+                                <!--Name-->
+                                <div role="gridcell" class="grid-cell">
+
+                                    <span class="datum">   @c.id_book </span>
+
+                                </div>
+
+                                <!--client_id-->
+                                <div role="gridcell" class="grid-cell">
+                                    <span class="datum">@c.inscription_id</span>
+                                </div>
+
+
+
+                                <!--deadline-->
+                                <div role="gridcell" class="grid-cell">
+                                    <span class="datum">@c.Deadline</span>
+                                </div>
+
+                                <!--Available copies-->
+                                @{
+
+                                    Book b = (Book)books.Find((s) => s.Id_Book == c.id_book).First();
+                                    
+
+                                    <div role="gridcell" class="grid-cell">
+                                        <span class="datum">@b.Available_Nbs</span>
+                                    </div>
+
+                                    <!--Taotal copies-->
+                                    <div role="gridcell" class="grid-cell">
+                                        <span class="datum">@b.Copies_Nbs</span>
+
+                                    </div>
+                                }
+                            </div>
+                            <!--Row-->
+                            <!--Row-->
+                        }
+                    }

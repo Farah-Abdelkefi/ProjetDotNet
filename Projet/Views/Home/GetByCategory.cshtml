@@ -1,0 +1,54 @@
+﻿@using Projet.Models
+@model List<Book>
+@{
+    Layout = "_layout";
+}
+@section Stylesheets {
+    <link rel="stylesheet" href="~/css/navItem.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/BookStore.css" asp-append-version="true" />
+
+}
+<div class="book-store">
+        <div class="main-wrapper">
+            <div class="popular-books">
+                <div class="main-menu">
+                    <div class="genre">Popular by Genre</div>
+                    <div class="book-types">
+                     <a href="/home/index" class="book-type "> All Genres</a>
+                        @foreach (String categorie in @ViewBag.categories)
+                        {
+                            @if (categorie == ViewBag.Cat)
+                            {<a href="/Home/GetByCategory/@categorie" class="book-type active"> @categorie </a> }
+                            else
+                        { <a href="/Home/GetByCategory/@categorie" class="book-type"> @categorie </a> }
+                        }
+
+                    </div>
+                 </div>
+   <div class="book-cards">
+    @foreach (Book book in Model)
+    {
+        <div class="book-card">
+            <div class="content-wrapper">
+                <img src=@book.Url alt="" class="book-card-img">
+                <div class="card-content">
+                    <div class="book-name">@book.Title</div>
+                    <div class="book-by">by @book.AuthorName </div>
+                    <div class="rate">
+
+                        <span class="book-voters card-vote">available copies : @book.Available_Nbs</span>
+                    </div>
+                    <div class="book-sum card-sum">@book.Description </div>
+                </div>
+            </div>
+            <div class="likes">
+
+                <div class="book-see"> <a href="/Home/BookPage/@book.Id_Book" style=" ">See The Book</a></div>
+
+            </div>
+        </div>
+             }
+        </div>
+        </div>
+</div>
+</div>

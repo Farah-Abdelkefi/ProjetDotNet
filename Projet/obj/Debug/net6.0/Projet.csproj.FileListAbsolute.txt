@@ -59,9 +59,7 @@ C:\Users\ThinkPad\Documents\Projet\Projet\bin\Debug\net6.0\runtimes\win-x86\nati
 C:\Users\ThinkPad\Documents\Projet\Projet\bin\Debug\net6.0\runtimes\browser\lib\net6.0\System.Text.Encodings.Web.dll
 C:\Users\ThinkPad\Documents\Projet\Projet\obj\Debug\net6.0\staticwebassets.build.json
 C:\Users\ThinkPad\Documents\Projet\Projet\obj\Debug\net6.0\staticwebassets.development.json
-C:\Users\ThinkPad\Documents\Projet\Projet\obj\Debug\net6.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
 C:\Users\ThinkPad\Documents\Projet\Projet\obj\Debug\net6.0\scopedcss\bundle\Projet.styles.css
-C:\Users\ThinkPad\Documents\Projet\Projet\obj\Debug\net6.0\scopedcss\projectbundle\Projet.bundle.scp.css
 C:\Users\ThinkPad\Documents\Projet\Projet\obj\Debug\net6.0\Projet.csproj.CopyComplete
 C:\Users\ThinkPad\Documents\Projet\Projet\obj\Debug\net6.0\Projet.dll
 C:\Users\ThinkPad\Documents\Projet\Projet\obj\Debug\net6.0\refint\Projet.dll

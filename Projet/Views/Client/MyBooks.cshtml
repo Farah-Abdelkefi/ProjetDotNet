@@ -1,0 +1,76 @@
+﻿@using Projet.Models;
+@model List<Book>
+@{
+    Layout = "_layout";
+}
+@section Stylesheets {
+    <link rel="stylesheet" href="~/css/navItem.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/BookStore.css" asp-append-version="true" />
+
+}
+    <style>
+        .dropdown:hover > .dropdown-menu {
+            display: block;
+        }
+
+        .dropdown > .dropdown-toggle:active {
+            /*Without this, clicking will make it sticky*/
+            pointer-events: none;
+        }
+
+    </style>
+    @section nav_bar {
+
+
+    <div class="container">
+        <div class="dropdown">
+            <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <img src="https://randomuser.me/api/portraits/women/63.jpg" alt="" class="user-img">
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <li class="dropdown-item" href="#">You are connected as<br > @ViewBag.client.FirstName @ViewBag.client.LastName </li>
+                <a class="dropdown-item" href="#">My Books</a>
+                <a class="dropdown-item" href="/home/index">Sign Out</a>
+            </div>
+        </div>
+    </div>
+
+
+
+ }
+
+
+<div class="book-cards">
+    @foreach (Book book in Model)
+    {
+        <div class="book-card">
+            <div class="content-wrapper">
+                <img src=@book.Url alt="" class="book-card-img">
+                <div class="card-content">
+                    <div class="book-name">@book.Title</div>
+                    <div class="book-by">by @book.AuthorName </div>
+                    @{
+                        foreach (Emprunt e in ViewBag.emprunts)
+                        {
+                            if (e.id_book == book.Id_Book)
+                            {
+                                <div class="rate">
+                                    <span class="book-voters card-vote">@e.Deadline</span>
+                                </div>
+                            }
+                        }
+
+
+                    }
+                    <div class="book-sum card-sum"> </div>
+                </div>
+            </div>
+            <div class="likes">
+
+                <div class="book-see"> <a href="/Home/BookPage/@book.Id_Book" style=" ">See The Book</a></div>
+
+            </div>
+        </div>
+    }
+</div>
+

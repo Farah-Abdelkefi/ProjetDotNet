@@ -1,5 +1,125 @@
-﻿@{
+﻿@using Projet.Models
+@model List<Book>
+@{
     ViewData["Title"] = "Home Page";
+    
+    
 }
+@section Stylesheets {
+    <link rel="stylesheet" href="~/css/navItem.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/BookStore.css" asp-append-version="true" />
+
+}
+
+
+
+
+@section nav_bar {
+
+   <li class="active">
+    <a asp-controller="Home" asp-action="SignUp" >
+
+            <!-- <span></span>
+            <span></span>
+            <span></span>
+            <span></span>-->
+       Sign Up
+    </a>
+    </li>
+        &nbsp; &nbsp;&nbsp; &nbsp;
+    <li>
+    <a asp-controller="Home" asp-action="LogIn">
+
+          <!--   <span></span>
+            <span></span>
+            <span></span>
+              <span></span>-->
+        Log In
+    </a>
+    </li>
+ }
+
+@if (ViewBag.Message)
+{
+    <div class="alert-danger">
+        Sorry ! We don't have this book 
+    </div>
+}
+
+<div class="book-store">
+    
+        <div class="main-wrapper">
+        <div class="books-of">
+            <div class="week">
+                <div class="author-title">Author of the week</div>
+                 @foreach(String author in @ViewBag.authors ){
+                    <div class="author">
+                        <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1400&q=80" alt="" class="author-img">
+                        <div class="author-name">@author</div>
+                    </div>
+                 }
+            </div>
+            <div class="week year">
+                <div class="author-title">Books of the year</div>
+                 @foreach(Book b in @ViewBag.popularBooks ){
+                    <div class="year-book">
+                        <img src=@b.Url alt="" class="year-book-img">
+                        <div class="year-book-content">
+                        <div class="year-book-name">@b.Title</div>
+                        <div class="year-book-author">by @b.AuthorName</div>
+                        </div>
+                    </div>
+                }
+            </div>
+            <div class="overlay"></div>
+        </div>
+        <div class="popular-books">
+            <div class="main-menu">
+                <div class="genre">Popular by Genre</div>
+                <div class="book-types">
+                    <a href="" class="book-type active"> All Genres</a>
+                    @foreach (String c in @ViewBag.categories)
+                    {
+                        <a  href="/home/GetByCategory/@c" class="book-type"> @c </a>
+                    }
+                    
+                </div>
+            </div>
+            
+            <div class="book-cards">
+                @foreach (Book book in Model)
+                {
+                <div class="book-card">
+                    <div class="content-wrapper">
+                        <img src=@book.Url alt="" class="book-card-img">
+                        <div class="card-content">
+                            <div class="book-name">@book.Title</div>
+                            <div class="book-by">by @book.AuthorName </div>
+                            <div class="rate">
+                                
+                                <span class="book-voters card-vote">available copies : @book.Available_Nbs</span>
+                            </div>
+                            <div class="book-sum card-sum">@book.Description </div>
+                        </div>
+                    </div>
+                        <div class="likes">
+
+                            <div class="book-see"> <a href="/Home/BookPage/@book.Id_Book" style=" ">See The Book</a></div>
+
+                        </div>
+                </div>
+                }
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
 
 

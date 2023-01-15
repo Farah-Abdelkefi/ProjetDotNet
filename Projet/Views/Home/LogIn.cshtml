@@ -1,0 +1,73 @@
+﻿@using Projet.Models;
+@model Client
+@{
+    ViewData["Title"] = "Sign In";
+
+}
+@{
+    Layout = "_Layout2";
+}
+@if (ViewBag.Message)
+{
+    <div class="alert-danger">
+        Please verify the email or password !
+    </div>
+}
+
+<main>
+    <div class="login-box">
+        <h2>Login</h2>
+        <form asp-action="LogIn">
+            <div class="user-box">
+                <input type="email" name="email" required="" asp-for="Email">
+                <label asp-for="Email">Email Address</label>
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="user-box">
+                <input type="password" name="password" required="" asp-for="Password">
+                <label asp-for="Password" >Password</label>
+                <span asp-validation-for="Password" class="text-danger"></span>
+
+            </div>
+            <center>
+                <a class="form-group"  >
+
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                  
+               
+                    <button type="submit"  >Submit</button>
+                
+                </a>
+            </center>
+
+        </form>
+        
+        <p class="login-callout" style="color:white">
+            <center>
+            New to  e-Library ?
+            <a class="text" href="/home/signup">Create an account</a>
+            </center>
+        </p>
+       
+    </div>
+</main>
+
+
+
+<!--
+    <div class=" container" style="border: 1px solid lightgrey ; width: 250 ;border-radius: 5px; padding: 5px">
+    <p class="login-callout mt-3">
+        New to  e-Library ?
+        <a href="/home/signup">Create an account</a>
+    </p>
+    </div>
+     </main>
+
+     -->
+
+   
+
+  
