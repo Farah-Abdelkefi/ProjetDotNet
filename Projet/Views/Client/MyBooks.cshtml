@@ -18,6 +18,12 @@
             pointer-events: none;
         }
 
+        .btn {
+            background-color: darkgrey;
+            margin-right: 40px;
+            border-radius: 54px;
+        }
+
     </style>
     @section nav_bar {
 
@@ -29,6 +35,7 @@
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 <li class="dropdown-item" href="#">You are connected as<br > @ViewBag.client.FirstName @ViewBag.client.LastName </li>
+                <a class="dropdown-item" href="/Client/index/@ViewBag.client.Inscription_Id">Home</a>
                 <a class="dropdown-item" href="#">My Books</a>
                 <a class="dropdown-item" href="/home/index">Sign Out</a>
             </div>

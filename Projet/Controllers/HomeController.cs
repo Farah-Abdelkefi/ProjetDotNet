@@ -127,7 +127,7 @@ namespace Projet.Controllers
         }
         public IActionResult GetByCategory(String categorie)
         {
-            Debug.WriteLine("cc");
+            
             LibraryContext Context = LibraryContext.Instantiate_LibraryContext();
              List<Book> books = Context.Book.ToList();
             List<Book> bs = new List<Book>();

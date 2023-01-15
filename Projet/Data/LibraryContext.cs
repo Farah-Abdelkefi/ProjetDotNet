@@ -42,7 +42,7 @@ namespace Projet.Data
             }
             catch (Exception ex)
             {
-                Debug.WriteLine("un exception est trouvee" + ex.Message);
+                Debug.WriteLine("une exception est trouvee" + ex.Message);
             }
             return _context;
         }
